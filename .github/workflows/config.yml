@@ -4,7 +4,7 @@ jobs:
   rspec:
     runs-on: ubuntu-latest
     services:
-      db_depot:
+      db:
         image: mysql:8.0.32
         ports:
           - 3307:3306
