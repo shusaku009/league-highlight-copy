@@ -50,7 +50,7 @@ jobs:
         run: |
           bundle exec rails db:create db:schema:load --trace
       - name: Precompile Assets
-          run: bundle exec rake assets:precompile
+          run: bundle exec rails assets:precompile
       - name: run spec
         run: bundle exec rspec
       - name: Archive rspec result screenshots
