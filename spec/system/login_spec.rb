@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "ログイン", type: :system do
+  let(:user) { create(:user) }
   describe 'ログイン機能' do
-    let(:user) { create(:user) }
     context '入力情報に誤りがある場合' do
       it 'エラーメッセージが表示されること' do
         visit '/login'
-        fill_in 'メールアドレス', with: 'wrong@example.com'
-        fill_in 'パスワード', with: '12345678'
-        find('#rspec').click
+        within '#login-form' do
+          fill_in 'メールアドレス', with: 'wrong@example.com'
+          fill_in 'パスワード', with: '12345678'
+          find('#rspec').click
+        end
         expect(page).to have_content 'ログインに失敗しました'
       end
     end
@@ -16,10 +18,40 @@ RSpec.describe "ログイン", type: :system do
     context '入力情報が正しい場合' do
       it 'ログインができること' do
         visit '/login'
-        fill_in 'メールアドレス', with: user.email
-        fill_in 'パスワード', with: '12345678'
-        find('#rspec').click
+        within '#login-form' do
+          fill_in 'メールアドレス', with: user.email
+          fill_in 'パスワード', with: '12345678'
+          find('#rspec').click
+        end
         expect(page).to have_content 'ログインしました'
+      end
+    end
+  end
+
+  describe 'ヘッダーのメニューの表示/非表示' do
+    context 'ログイン状態の場合' do
+      before do
+        login_as(user)
+      end
+
+      it 'メニューの表示/非表示が適切であること' do
+        visit '/'
+        within '#header' do
+          expect(page).not_to have_link 'ログイン', href: '/login'
+          expect(page).not_to have_link '会員登録', href: '/signup'
+          expect(page).to have_css '#header-avatar-dropdown'
+        end
+      end
+    end
+
+    context '未ログインの場合' do
+      it 'メニューの表示/非表示が適切であること' do
+        visit '/'
+        within '#header' do
+          expect(page).to have_link 'ログイン', href: '/login'
+          expect(page).to have_link '会員登録', href: '/signup'
+          expect(page).not_to have_css '#header-avatar-dropdown'
+        end
       end
     end
   end
