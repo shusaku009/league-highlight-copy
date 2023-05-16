@@ -28,6 +28,18 @@ RSpec.describe "ログイン", type: :system do
     end
   end
 
+  describe 'ログアウト機能' do
+    before do
+      login_as(user)
+    end
+
+    it 'ログアウトができること' do
+      find("#header-avatar-dropdown").click
+      accept_confirm { click_on 'ログアウト' }
+      expect(page).to have_content 'ログアウトしました'
+    end
+  end
+
   describe 'ヘッダーのメニューの表示/非表示' do
     context 'ログイン状態の場合' do
       before do
