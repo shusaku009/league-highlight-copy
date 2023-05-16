@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="bumblebee">
   <head>
     <title>LeagueHighlight</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "application", 'data-turbo-track': "reload" %>
+    <%= javascript_include_tag "application", 'data-turbo-track': "reload", defer: true %>
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
+    <%= render 'shared/flash_messages' %>
     <%= yield %>
   </body>
 </html>
