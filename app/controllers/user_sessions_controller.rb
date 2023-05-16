@@ -14,6 +14,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to login_path, error: 'ログアウトしました', stauts: :see_other
+    redirect_to login_path, success: 'ログアウトしました', stauts: :see_other
   end
 end
