@@ -14,12 +14,12 @@
                 <%= f.label :password, User.human_attribute_name(:password), class: 'form-label text-lg' %>
                 <%= f.password_field :password, class: 'form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline' %>
               </div>
-              <%= f.submit 'ログイン', class: 'w-full bg-yellow-400 text-white font-bold text-lg hover:bg-yellow-600 p-2 mt-8' %>
+              <%= f.submit 'ログイン', class: 'w-full bg-yellow-400 text-white font-bold text-lg hover:bg-yellow-600 p-2 mt-8', id: 'rspec' %>
             <% end %>
           </div>
           <div class="text-center pt-12 pb-12">
               <p>アカウントお持ちではないですか？</p>
-              <p><a href="#" class="underline font-semibold">新規会員登録ページへ</a></p>
+              <p><%= link_to '新規会員登録ページへ', signup_path, class: 'underline font-semibold' %></p>
           </div>
       </div>
     </div>

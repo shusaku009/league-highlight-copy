@@ -7,8 +7,8 @@
   </div>
   <div class="flex-none gap-2">
     <ul class="menu menu-horizontal px-1">
-      <li><a class="mr-1">ログイン</a></li>
-      <li><a class="mr-1">会員登録</a></li>
+      <li><%= link_to 'ログイン', login_path, class: 'mr-1' %></li>
+      <li><%= link_to '会員登録', signup_path, class: 'mr-1' %></li>
     </ul>
     <div class="dropdown dropdown-end">
       <label tabindex="0" class="btn btn-ghost btn-circle avatar">
