@@ -1,0 +1,14 @@
+<div class="p-5">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <% @youtube_data.items.each do |item| %>
+      <div class="bg-white rounded-md overflow-hidden">
+        <div class="p-4 relative" style="padding-bottom: 56.25%;">
+          <iframe class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="fullscreen"></iframe>
+        </div>
+        <div class="bg-gray-100 shadow-lg h-24 px-4 rounded-lg inline-block">
+            <p class="text-gray-800py-2"><%= item.snippet.title %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
